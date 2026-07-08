@@ -52,7 +52,7 @@ Notice:
 3. Download source code, update feeds and choose configuration
 
    ```bash
-   git clone https://github.com/DHDAXCW/lede-rockchip
+   git clone https://github.com/kaishenwuliu/lede-rockchip
    cd lede-rockchip
    ./scripts/feeds update -a
    ./scripts/feeds install -a
