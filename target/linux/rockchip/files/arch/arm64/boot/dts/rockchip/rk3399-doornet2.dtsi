@@ -133,19 +133,31 @@
 };
 
 &gmac {
-	assigned-clocks = <&cru SCLK_RMII_SRC>;
-	assigned-clock-parents = <&clkin_gmac>;
+	local-mac-address = [72 7d c2 93 a8 0c];
+	assigned-clocks = <&cru SCLK_MAC>;
+   	assigned-clock-parents = <&clkin_gmac>;
+    	clock-names = "stmmaceth",
+                  		   "mac_clk_rx",
+				   "mac_clk_tx",
+				   "clk_mac_ref",
+				   "clk_mac_refout",
+                  		   "aclk_mac",
+                  		   "pclk_mac";
+	resets = <&cru SRST_A_GMAC>;
+        reset-names = "stmmaceth";
 	clock_in_out = "input";
-	phy-supply = <&vcc3v3_s3>;
-	phy-mode = "rgmii";
-	pinctrl-names = "default";
-	pinctrl-0 = <&rgmii_pins>;
-	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
-	snps,reset-active-low;
-	snps,reset-delays-us = <0 100000 50000>;
-	tx_delay = <0x28>;
-	rx_delay = <0x11>;
-	status = "okay";
+	rockchip,grf = <&grf>;
+    	phy-supply = <&vcc3v3_s3>;
+    	phy-mode = "rgmii";
+    	pinctrl-names = "default";
+    	pinctrl-0 = <&rgmii_pins>;
+	snps,txpbl = <4>;
+    	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
+    	snps,reset-active-low;
+    	snps,reset-delays-us = <0 100000 50000>;
+    	tx_delay = <0x13>;
+    	rx_delay = <0x0e>;
+    	status = "okay";
 };
 
 &gpu {
@@ -441,6 +453,7 @@
 };
 
 &pinctrl {
+	
 	fusb30x {
 		fusb0_int: fusb0-int {
 			rockchip,pins = <1 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>;
@@ -455,7 +468,7 @@
 
 	ethernet-phy {
 		eth_phy_reset_pin: eth-phy-reset-pin {
-			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_down>;
+			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 	};
 
