@@ -447,9 +447,21 @@
 
 &pcie0 {
 	ep-gpios = <&gpio2 RK_PA4 GPIO_ACTIVE_HIGH>;
-	max-link-speed = <2>;
-	num-lanes = <4>;
+	max-link-speed = <1>;
+	num-lanes = <1>;
+	vpcie3v3-supply = <&vcc3v3_sys>;
 	status = "okay";
+ 	pcie@0 {
+       		reg = <0x00 0x00 0x00 0x00 0x00>;
+        	#address-cells = <3>;
+        	#size-cells = <2>;
+
+        	pcie-eth@0 {
+            		compatible = "realtek,r8168";
+            		reg = <0x00 0x00 0x00 0x00 0x00>;
+            		realtek,led-data = <0x7f0>;
+        	};
+    	};
 };
 
 &pinctrl {
