@@ -18,6 +18,9 @@ define Device/embedfire_doornet2
   DEVICE_VENDOR := EmbedFire
   DEVICE_MODEL := DoorNet2
   SOC := rk3399
+  DEVICE_DTS := rockchip/rk3399-doornet2
+  UBOOT_DEVICE_NAME := doornet2-rk3399
+  KERNEL_LOADADDR := 0x00280000
   BOOT_FLOW := pine64-bin
   DEVICE_PACKAGES := kmod-r8168 -urngd
 endef
